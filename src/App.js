@@ -1,8 +1,12 @@
+import Footer from "./components/layout/Footer";
+import NavBar from "./components/layout/NavBar";
+
 function App() {
   return (
-    <div className="bg-purple-500">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <button className="btn">Click</button>
+    <div className="flex flex-col justify-between h-screen">
+      <NavBar />
+      <main className="container mx-auto px-3 pb-12">Content</main>
+      <Footer />
     </div>
   );
 }
