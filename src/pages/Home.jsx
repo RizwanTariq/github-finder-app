@@ -1,5 +1,12 @@
+import UsersList from "../components/users/UsersList";
+
 function Home() {
-  return <div>Home</div>;
+  return (
+    <>
+      {/* {Search Component} */}
+      <UsersList />
+    </>
+  );
 }
 
 export default Home;
