@@ -1,9 +1,10 @@
+import UserSearch from "../components/users/UserSearch";
 import UsersList from "../components/users/UsersList";
 
 function Home() {
   return (
     <>
-      {/* {Search Component} */}
+      <UserSearch />
       <UsersList />
     </>
   );

@@ -4,9 +4,11 @@ import Spinner from "../layout/Spinner";
 import UserItem from "./UserItem";
 function UsersList() {
   const { isLoading, users, fetchUsers } = useContext(GithubContext);
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+
+  //FOR TESTING GET USERS API
+  //   useEffect(() => {
+  //     fetchUsers();
+  //   }, []);
 
   if (!isLoading) {
     return (
