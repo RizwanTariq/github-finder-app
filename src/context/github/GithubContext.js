@@ -13,21 +13,37 @@ export function GithubProvider({ children }) {
   };
   const [state, dispatch] = useReducer(githubReducer, initialState);
 
-  //FETCH USERS FROM GITHUB API
-  async function fetchUsers() {
+  //FETCH USERS FROM GITHUB API (TEST FUNCTION)
+  //   async function fetchUsers() {
+  //     setLoading();
+  //     console.log(state.isLoading);
+  //     const res = await fetch(
+  //       `${GITHUB_URL}/users`
+  //       ,
+  //       {
+  //         headers: {
+  //           Authorization: `token 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`,
+  //         },
+  //       }
+  //     );
+  //     const data = await res.json();
+  //     dispatch({
+  //       type: "GET_USERS",
+  //       payload: { users: data, isLoading: false },
+  //     });
+  //   }
+
+  //Search users from Github
+  async function searchUsers(text) {
     setLoading();
-    console.log(state.isLoading);
-    const res = await fetch(`${GITHUB_URL}/users`, {
-      headers: {
-        Authorization: `token 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`,
-      },
-    });
-    const data = await res.json();
+    const res = await fetch(`${GITHUB_URL}/search/users?q=${text}`);
+    const { items } = await res.json();
     dispatch({
       type: "GET_USERS",
-      payload: { users: data, isLoading: false },
+      payload: { users: items, isLoading: false },
     });
   }
+
   //SET LOAD SCROLLING TO TRUE
   const setLoading = () => {
     dispatch({
@@ -36,7 +52,7 @@ export function GithubProvider({ children }) {
   };
   return (
     <GithubContext.Provider
-      value={{ users: state.users, isLoading: state.isLoading, fetchUsers }}
+      value={{ users: state.users, isLoading: state.isLoading, searchUsers }}
     >
       {children}
     </GithubContext.Provider>
