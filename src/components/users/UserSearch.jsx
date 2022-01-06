@@ -15,9 +15,10 @@ function UserSearch() {
     e.preventDefault();
     if (text === "") {
       Swal.fire({
-        title: "Please enter search! ",
-        icon: "warning",
-        confirmButtonColor: "#3d4451",
+        position: "center",
+        title: "Enter something to search! ",
+        showConfirmButton: false,
+        timer: 600,
       });
     } else {
       searchUsers(text);
