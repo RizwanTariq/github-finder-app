@@ -44,6 +44,13 @@ export function GithubProvider({ children }) {
     });
   }
 
+  //Clear Users list
+  function clearUsers() {
+    dispatch({
+      type: "CLEAR_USERS",
+    });
+  }
+
   //SET LOAD SCROLLING TO TRUE
   const setLoading = () => {
     dispatch({
@@ -52,7 +59,12 @@ export function GithubProvider({ children }) {
   };
   return (
     <GithubContext.Provider
-      value={{ users: state.users, isLoading: state.isLoading, searchUsers }}
+      value={{
+        users: state.users,
+        isLoading: state.isLoading,
+        searchUsers,
+        clearUsers,
+      }}
     >
       {children}
     </GithubContext.Provider>

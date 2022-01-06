@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import GithubContext from "../../context/github/GithubContext";
 function UserSearch() {
   const [text, setText] = useState("");
-  const { users, searchUsers } = useContext(GithubContext);
+  const { users, searchUsers, clearUsers } = useContext(GithubContext);
 
   //Handle Controlled input
   const handleChange = (e) => {
@@ -23,6 +23,12 @@ function UserSearch() {
       searchUsers(text);
       setText("");
     }
+  };
+
+  //Handle Clear User
+  const handleClear = (e) => {
+    e.preventDefault();
+    clearUsers();
   };
 
   //JSX
@@ -51,7 +57,9 @@ function UserSearch() {
       </div>
       {users.length > 0 && (
         <div>
-          <button className="btn btn-ghost btn-lg">Clear</button>
+          <button onClick={handleClear} className="btn btn-ghost btn-lg">
+            Clear
+          </button>
         </div>
       )}
     </div>
