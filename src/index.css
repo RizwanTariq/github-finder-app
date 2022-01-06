@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-card-image .card.image-full:before {
+  opacity: 0.3;
+}
+.text-lg.stat-value {
+  font-weight: bold;
+}

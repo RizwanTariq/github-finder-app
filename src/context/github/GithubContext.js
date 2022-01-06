@@ -9,7 +9,7 @@ const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 export function GithubProvider({ children }) {
   const initialState = {
     users: [],
-    user: {},
+    user: { userData: {}, repos: [] },
     isLoading: false,
   };
   const [state, dispatch] = useReducer(githubReducer, initialState);
@@ -45,14 +45,21 @@ export function GithubProvider({ children }) {
     });
   }
 
+  //Fetch repositories of Specific User
+  async function getRepos(login) {
+    const res = await fetch(`${GITHUB_URL}/users/${login}/repos`);
+    const repos = await res.json();
+    return repos;
+  }
   //Fetch Single user from github API
   async function getUser(login) {
     setLoading();
     const res = await fetch(`${GITHUB_URL}/users/${login}`);
-    const data = await res.json();
+    const userData = await res.json();
+    const repos = await getRepos(login);
     dispatch({
       type: "GET_USER",
-      payload: { user: data },
+      payload: { userData, repos, isLoading: false },
     });
   }
 
@@ -72,9 +79,7 @@ export function GithubProvider({ children }) {
   return (
     <GithubContext.Provider
       value={{
-        users: state.users,
-        user: state.user,
-        isLoading: state.isLoading,
+        ...state,
         searchUsers,
         clearUsers,
         getUser,

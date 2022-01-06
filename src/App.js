@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/layout/Footer";
 import NavBar from "./components/layout/NavBar";
-import User from "./components/users/User";
+import User from "./pages/User";
 import { GithubProvider } from "./context/github/GithubContext";
 import About from "./pages/About";
 import Home from "./pages/Home";
