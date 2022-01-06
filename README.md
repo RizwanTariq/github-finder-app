@@ -1,5 +1,8 @@
 # github-finder-app
 Github User Finder app using react.js
+#live-endpoint
+https://github-finder-app-ashen.vercel.app/
+https://github-finder-app96.herokuapp.com/
 
 
 # Getting Started with Create React App
